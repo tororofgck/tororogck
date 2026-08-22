@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width,initial-scale=1">
+      content="width=device-width, initial-scale=1">
 
 <title>神宮寺匁トロロ｜動画＋漫画</title>
 
@@ -16,7 +18,7 @@
 body {
     margin: 0;
     background: #111;
-    color: white;
+    color: #fff;
     font-family:
         system-ui,
         -apple-system,
@@ -24,10 +26,6 @@ body {
         "Segoe UI",
         sans-serif;
 }
-
-/* =========================
-   ヘッダー
-========================= */
 
 header {
     position: sticky;
@@ -46,11 +44,6 @@ header {
     border-bottom: 1px solid #333;
 }
 
-
-/* =========================
-   コンテナ
-========================= */
-
 .container {
     width: 100%;
     max-width: 1000px;
@@ -67,6 +60,7 @@ header {
 
 .youtube-section {
     position: sticky;
+
     top: 53px;
 
     z-index: 900;
@@ -75,7 +69,6 @@ header {
 
     padding-bottom: 10px;
 }
-
 
 .youtube {
     position: relative;
@@ -91,16 +84,15 @@ header {
     overflow: hidden;
 }
 
-
 #player {
     width: 100%;
     height: 100%;
 }
 
-
 #player iframe {
     width: 100% !important;
     height: 100% !important;
+
     border: 0;
 }
 
@@ -131,7 +123,7 @@ header {
 
 
 /* =========================
-   おすすめ動画
+   おすすめ
 ========================= */
 
 .recommend-title {
@@ -142,7 +134,6 @@ header {
     font-weight: bold;
 }
 
-
 .video-list {
     display: flex;
 
@@ -152,7 +143,6 @@ header {
 
     padding: 10px 0;
 }
-
 
 .video-card {
     flex: 0 0 180px;
@@ -168,11 +158,9 @@ header {
     border: 1px solid #333;
 }
 
-
 .video-card:hover {
     background: #292929;
 }
-
 
 .video-card img {
     display: block;
@@ -183,7 +171,6 @@ header {
 
     object-fit: cover;
 }
-
 
 .video-title {
     padding: 8px;
@@ -208,7 +195,6 @@ header {
     font-weight: bold;
 }
 
-
 .manga {
     width: 100%;
 
@@ -216,7 +202,6 @@ header {
 
     text-align: center;
 }
-
 
 .manga-page {
     display: block;
@@ -236,7 +221,7 @@ header {
 
 
 /* =========================
-   ページ操作
+   漫画操作
 ========================= */
 
 .controls {
@@ -251,7 +236,6 @@ header {
     padding: 15px 0;
 }
 
-
 .controls button {
     border: 0;
 
@@ -264,8 +248,13 @@ header {
     color: white;
 
     font-size: 15px;
+
+    cursor: pointer;
 }
 
+.controls button:active {
+    transform: scale(.96);
+}
 
 #pageNumber {
     min-width: 70px;
@@ -305,18 +294,16 @@ header {
 
 
 <header>
-
 📺 神宮寺匁トロロ × 📖 オリジナル漫画
-
 </header>
 
 
 <div class="container">
 
 
-<!-- ==================================================
+<!-- =========================
      YouTube
-================================================== -->
+========================= -->
 
 <section class="youtube-section">
 
@@ -332,7 +319,7 @@ header {
         id="playerStatus"
         class="status">
 
-        YouTubeプレーヤーを準備しています……
+        動画を読み込んでいます……
 
     </div>
 
@@ -361,9 +348,9 @@ header {
 
 
 
-<!-- ==================================================
+<!-- =========================
      漫画
-================================================== -->
+========================= -->
 
 <section>
 
@@ -390,8 +377,7 @@ header {
     <div class="controls">
 
 
-        <button
-            onclick="previousPage()">
+        <button onclick="previousPage()">
 
             ← 前へ
 
@@ -405,8 +391,7 @@ header {
         </span>
 
 
-        <button
-            onclick="nextPage()">
+        <button onclick="nextPage()">
 
             次へ →
 
@@ -425,6 +410,7 @@ header {
 
 <script>
 
+
 /* ==================================================
    YouTube設定
 ================================================== */
@@ -439,11 +425,14 @@ const CHANNEL_ID =
 
 
 /*
- * ★ここに新しく作ったAPIキーを入れる
+ * ★あなたのYouTube Data APIキー
+ *
+ * ※公開サイトなので、本番運用では
+ * Google Cloud側でHTTPリファラー制限を推奨
  */
 
 const API_KEY =
-    "ここに新しいAPIキー";
+    "AIzaSyAffHbfRoiwRy1_Kz7reVyQsNr0UPJinvQ";
 
 
 /*
@@ -453,15 +442,23 @@ const API_KEY =
 const MAX_RESULTS = 10;
 
 
+/* ==================================================
+   プレーヤー変数
+================================================== */
+
 let player = null;
 
 let playerReady = false;
+
+let youtubeAPIReady = false;
+
+let firstVideoId = null;
 
 let pendingVideoId = null;
 
 
 /* ==================================================
-   YouTube IFrame API
+   YouTube IFrame APIを読み込む
 ================================================== */
 
 function loadYouTubeAPI() {
@@ -469,42 +466,90 @@ function loadYouTubeAPI() {
     const script =
         document.createElement("script");
 
+
     script.src =
         "https://www.youtube.com/iframe_api";
+
 
     script.onerror =
         function() {
 
             setPlayerStatus(
-                "YouTube APIを読み込めませんでした。",
+                "YouTubeプレーヤーAPIを読み込めませんでした。",
                 true
             );
 
         };
+
 
     document.head.appendChild(script);
 
 }
 
 
-/*
- * YouTube APIから呼ばれる関数
- */
+/* ==================================================
+   YouTube API準備完了
+================================================== */
 
 function onYouTubeIframeAPIReady() {
 
+    youtubeAPIReady = true;
+
 
     /*
-     * HTTPSサイトの場合は
-     * 現在のドメインをoriginに設定
+     * 動画取得が先に終わっていた場合
      */
 
-    let origin;
+    if (firstVideoId) {
+
+        createPlayer(
+            firstVideoId
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   プレーヤー作成
+================================================== */
+
+function createPlayer(videoId) {
+
+
+    /*
+     * 空のIDでは作らない
+     */
+
+    if (!videoId) {
+
+        return;
+
+    }
+
+
+    /*
+     * すでに作成済みなら終了
+     */
+
+    if (player) {
+
+        return;
+
+    }
+
+
+    /*
+     * HTTPSのドメインを取得
+     */
+
+    let origin = null;
 
 
     if (
-        location.protocol === "http:" ||
-        location.protocol === "https:"
+        location.protocol === "https:" ||
+        location.protocol === "http:"
     ) {
 
         origin =
@@ -524,6 +569,10 @@ function onYouTubeIframeAPIReady() {
     };
 
 
+    /*
+     * Error 153対策
+     */
+
     if (origin) {
 
         playerVars.origin =
@@ -541,7 +590,7 @@ function onYouTubeIframeAPIReady() {
 
                 height: "100%",
 
-                videoId: "",
+                videoId: videoId,
 
                 playerVars:
                     playerVars,
@@ -556,20 +605,48 @@ function onYouTubeIframeAPIReady() {
 
 
                             setPlayerStatus(
-                                "動画を選択すると再生できます。"
+                                "動画を再生できます。"
                             );
 
+
+                            /*
+                             * 待機中の動画があれば再生
+                             */
 
                             if (
                                 pendingVideoId
                             ) {
 
-                                playVideo(
-                                    pendingVideoId
-                                );
+                                const id =
+                                    pendingVideoId;
+
 
                                 pendingVideoId =
                                     null;
+
+
+                                playVideo(id);
+
+                            }
+
+                        },
+
+
+                    onStateChange:
+                        function(event) {
+
+                            /*
+                             * 再生開始
+                             */
+
+                            if (
+                                event.data ===
+                                YT.PlayerState.PLAYING
+                            ) {
+
+                                setPlayerStatus(
+                                    "▶ 再生中"
+                                );
 
                             }
 
@@ -585,7 +662,6 @@ function onYouTubeIframeAPIReady() {
                             switch (
                                 event.data
                             ) {
-
 
                                 case 2:
 
@@ -624,7 +700,7 @@ function onYouTubeIframeAPIReady() {
                                 case 153:
 
                                     message =
-                                        "Error 153：HTTP Refererを確認できません。file://ではなくHTTPSのWebページから開いてください。";
+                                        "Error 153：HTTP Refererを確認できません。HTTPSのページから開いてください。";
 
                                     break;
 
@@ -654,7 +730,7 @@ function onYouTubeIframeAPIReady() {
 
 
 /* ==================================================
-   プレーヤー状態
+   ステータス表示
 ================================================== */
 
 function setPlayerStatus(
@@ -666,6 +742,13 @@ function setPlayerStatus(
         document.getElementById(
             "playerStatus"
         );
+
+
+    if (!element) {
+
+        return;
+
+    }
 
 
     element.textContent =
@@ -687,9 +770,8 @@ function setPlayerStatus(
    動画再生
 ================================================== */
 
-function playVideo(
-    videoId
-) {
+function playVideo(videoId) {
+
 
     if (!videoId) {
 
@@ -698,14 +780,23 @@ function playVideo(
     }
 
 
-    if (!playerReady) {
+    /*
+     * プレーヤーがまだ作られていない
+     */
+
+    if (
+        !player ||
+        !playerReady
+    ) {
 
         pendingVideoId =
             videoId;
 
+
         setPlayerStatus(
             "プレーヤーを準備しています……"
         );
+
 
         return;
 
@@ -743,19 +834,13 @@ async function loadVideos() {
 
     if (
         !API_KEY ||
-        API_KEY ===
-            AIzaSyAffHbfRoiwRy1_Kz7reVyQsNr0UPJinvQ
+        API_KEY.trim() === ""
     ) {
 
-        list.innerHTML = `
-
-            <div class="status error">
-
-                YouTube APIキーが設定されていません。
-
-            </div>
-
-        `;
+        showAPIError(
+            list,
+            "YouTube APIキーが設定されていません。"
+        );
 
         return;
 
@@ -765,11 +850,9 @@ async function loadVideos() {
     try {
 
 
-        /*
-         * ------------------------------------------
-         * 1. チャンネル情報
-         * ------------------------------------------
-         */
+        /* ------------------------------------------
+           1. チャンネル情報取得
+        ------------------------------------------ */
 
         const channelURL =
 
@@ -830,7 +913,7 @@ async function loadVideos() {
 
 
         /*
-         * アップロード動画用
+         * アップロード動画の
          * プレイリストID
          */
 
@@ -843,11 +926,9 @@ async function loadVideos() {
                 .uploads;
 
 
-        /*
-         * ------------------------------------------
-         * 2. 動画一覧
-         * ------------------------------------------
-         */
+        /* ------------------------------------------
+           2. 動画一覧取得
+        ------------------------------------------ */
 
         const videosURL =
 
@@ -903,54 +984,93 @@ async function loadVideos() {
             videosData.items.length === 0
         ) {
 
-            list.innerHTML = `
-
-                <div class="status">
-
-                    公開動画が見つかりません。
-
-                </div>
-
-            `;
-
-            return;
+            throw new Error(
+                "公開動画が見つかりません。"
+            );
 
         }
 
 
         /*
-         * 一覧をクリア
+         * 一覧を空にする
          */
 
         list.innerHTML = "";
 
 
         /*
+         * 有効な動画だけ取得
+         */
+
+        const videos =
+            videosData.items
+                .map(
+                    function(item) {
+
+                        return {
+
+                            id:
+                                item.snippet
+                                    ?.resourceId
+                                    ?.videoId,
+
+                            title:
+                                item.snippet
+                                    ?.title ||
+                                "動画"
+
+                        };
+
+                    }
+                )
+                .filter(
+                    function(video) {
+
+                        return !!video.id;
+
+                    }
+                );
+
+
+        if (
+            videos.length === 0
+        ) {
+
+            throw new Error(
+                "有効な動画IDを取得できませんでした。"
+            );
+
+        }
+
+
+        /*
+         * 最初の動画
+         */
+
+        firstVideoId =
+            videos[0].id;
+
+
+        /*
+         * YouTube APIがすでに
+         * 準備できていればプレーヤー作成
+         */
+
+        if (youtubeAPIReady) {
+
+            createPlayer(
+                firstVideoId
+            );
+
+        }
+
+
+        /*
          * 動画カード作成
          */
 
-        videosData.items.forEach(
-            function(item) {
-
-
-                const videoId =
-
-                    item.snippet
-                        ?.resourceId
-                        ?.videoId;
-
-
-                if (!videoId) {
-
-                    return;
-
-                }
-
-
-                const title =
-
-                    item.snippet.title ||
-                    "動画";
+        videos.forEach(
+            function(video) {
 
 
                 const card =
@@ -963,6 +1083,10 @@ async function loadVideos() {
                     "video-card";
 
 
+                /*
+                 * サムネイル
+                 */
+
                 const image =
                     document.createElement(
                         "img"
@@ -971,13 +1095,21 @@ async function loadVideos() {
 
                 image.src =
                     "https://i.ytimg.com/vi/" +
-                    videoId +
-                    "/mqdefault.jpg";
+                    video.id +
+                    "/hqdefault.jpg";
 
 
                 image.alt =
-                    title;
+                    video.title;
 
+
+                image.loading =
+                    "lazy";
+
+
+                /*
+                 * タイトル
+                 */
 
                 const titleElement =
                     document.createElement(
@@ -990,7 +1122,7 @@ async function loadVideos() {
 
 
                 titleElement.textContent =
-                    title;
+                    video.title;
 
 
                 card.appendChild(
@@ -1004,17 +1136,19 @@ async function loadVideos() {
 
 
                 /*
-                 * ユーザーが選択したら再生
+                 * クリックで再生
                  */
 
-                card.onclick =
+                card.addEventListener(
+                    "click",
                     function() {
 
                         playVideo(
-                            videoId
+                            video.id
                         );
 
-                    };
+                    }
+                );
 
 
                 list.appendChild(
@@ -1025,32 +1159,55 @@ async function loadVideos() {
         );
 
 
+        /*
+         * 完了
+         */
+
+        setPlayerStatus(
+            "動画を選択すると再生できます。"
+        );
+
     }
 
     catch(error) {
 
 
         console.error(
-            "YouTube API Error:",
+            "YouTube Data API Error:",
             error
         );
 
 
-        list.innerHTML = `
-
-            <div class="status error">
-
-                動画を取得できませんでした。<br><br>
-
-                ${escapeHTML(
-                    error.message
-                )}
-
-            </div>
-
-        `;
+        showAPIError(
+            list,
+            error.message
+        );
 
     }
+
+}
+
+
+/* ==================================================
+   APIエラー表示
+================================================== */
+
+function showAPIError(
+    element,
+    message
+) {
+
+    element.innerHTML = `
+
+        <div class="status error">
+
+            YouTube動画を取得できませんでした。<br><br>
+
+            ${escapeHTML(message)}
+
+        </div>
+
+    `;
 
 }
 
@@ -1097,20 +1254,7 @@ function escapeHTML(
    漫画
 ================================================== */
 
-
-/*
- * mangaフォルダ内に
- *
- * 001.jpg
- * 002.jpg
- * 003.jpg
- * ...
- *
- * を置く
- */
-
 const TOTAL_PAGES = 10;
-
 
 let currentPage = 1;
 
@@ -1135,7 +1279,6 @@ function showPage() {
 
 
     const filename =
-
         String(
             currentPage
         ).padStart(
@@ -1151,7 +1294,6 @@ function showPage() {
 
 
     pageNumber.textContent =
-
         currentPage +
         " / " +
         TOTAL_PAGES;
@@ -1178,7 +1320,6 @@ function nextPage() {
 
     currentPage++;
 
-
     showPage();
 
 }
@@ -1201,7 +1342,6 @@ function previousPage() {
 
 
     currentPage--;
-
 
     showPage();
 
@@ -1273,9 +1413,7 @@ mangaImage.addEventListener(
 
 
         const endX =
-            event
-                .changedTouches[0]
-                .clientX;
+            event.changedTouches[0].clientX;
 
 
         const difference =
