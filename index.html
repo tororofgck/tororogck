@@ -2,8 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GhostError</title>
 
 <style>
@@ -13,22 +12,16 @@
   padding:0;
 }
 
-html,body{
-  width:100%;
-  min-height:100%;
+body{
   background:#0f0f0f;
   color:#fff;
   font-family:Arial,"Noto Sans JP",sans-serif;
 }
 
-body{
-  overflow-x:hidden;
-}
-
 .page{
   width:100%;
   max-width:1700px;
-  margin:0 auto;
+  margin:auto;
   padding:20px;
 }
 
@@ -36,20 +29,11 @@ body{
   display:grid;
   grid-template-columns:minmax(0,1fr) 420px;
   gap:20px;
-  align-items:start;
 }
-
-/* =================================
-   左側
-================================= */
 
 .main{
   min-width:0;
 }
-
-/* =================================
-   YouTube動画
-================================= */
 
 .video{
   width:100%;
@@ -59,35 +43,30 @@ body{
   overflow:hidden;
 }
 
-.video iframe{
+#player{
   width:100%;
   height:100%;
-  display:block;
-  border:0;
 }
 
-/* =================================
-   漫画
-================================= */
+/* 漫画 */
 
 .manga{
-  width:100%;
   margin-top:20px;
   background:#fff;
+  color:#111;
   border-radius:10px;
   overflow:hidden;
 }
 
 .manga-header{
-  background:#111;
   padding:18px 20px;
-  border-bottom:1px solid #333;
+  background:#111;
+  color:#fff;
 }
 
 .manga-title{
   font-size:28px;
   font-weight:800;
-  letter-spacing:.5px;
 }
 
 .manga-episode{
@@ -96,25 +75,13 @@ body{
   font-size:14px;
 }
 
-.manga-pages{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-}
-
 .manga-page{
+  display:block;
   width:100%;
   height:auto;
-  display:block;
 }
 
-/* =================================
-   右側おすすめ
-================================= */
-
-.recommend{
-  min-width:0;
-}
+/* おすすめ */
 
 .list{
   display:flex;
@@ -126,10 +93,9 @@ body{
   display:grid;
   grid-template-columns:175px minmax(0,1fr);
   gap:10px;
-  width:100%;
-  cursor:pointer;
-  border-radius:8px;
   padding:3px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
 .item:hover{
@@ -139,10 +105,9 @@ body{
 .thumb{
   width:175px;
   aspect-ratio:16/9;
-  position:relative;
+  background:#222;
   overflow:hidden;
   border-radius:7px;
-  background:#222;
 }
 
 .thumb img{
@@ -168,30 +133,23 @@ body{
 }
 
 .channel{
+  margin-top:6px;
   color:#aaa;
   font-size:12px;
-  margin-top:6px;
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
-.loading{
-  color:#aaa;
-  font-size:13px;
-  padding:10px 0;
-}
-
+.loading,
 .error{
+  padding:10px;
   color:#aaa;
   font-size:13px;
-  line-height:1.6;
 }
 
-/* =================================
-   タブレット
-================================= */
+/* タブレット */
 
 @media(max-width:1100px){
 
@@ -219,14 +177,9 @@ body{
   .channel{
     font-size:10px;
   }
-
 }
 
-/* =================================
-   スマホ
-   動画：左
-   おすすめ：右
-================================= */
+/* スマホ */
 
 @media(max-width:700px){
 
@@ -243,35 +196,9 @@ body{
     border-radius:6px;
   }
 
-  .manga{
-    margin-top:8px;
-    border-radius:5px;
-  }
-
-  .manga-header{
-    padding:10px 12px;
-  }
-
-  .manga-title{
-    font-size:20px;
-  }
-
-  .manga-episode{
-    font-size:10px;
-    margin-top:3px;
-  }
-
-  .list{
-    gap:8px;
-  }
-
   .item{
     display:block;
     padding:0;
-  }
-
-  .item:hover{
-    background:none;
   }
 
   .thumb{
@@ -294,25 +221,29 @@ body{
     margin-top:2px;
   }
 
+  .manga{
+    margin-top:8px;
+    border-radius:5px;
+  }
+
+  .manga-header{
+    padding:10px 12px;
+  }
+
+  .manga-title{
+    font-size:20px;
+  }
+
+  .manga-episode{
+    font-size:10px;
+  }
 }
 
-/* =================================
-   小型スマホ
-================================= */
-
 @media(max-width:420px){
-
-  .page{
-    padding:4px;
-  }
 
   .layout{
     grid-template-columns:minmax(0,1fr) 120px;
     gap:5px;
-  }
-
-  .manga-title{
-    font-size:18px;
   }
 
   .title{
@@ -322,7 +253,6 @@ body{
   .channel{
     font-size:7px;
   }
-
 }
 </style>
 </head>
@@ -333,28 +263,13 @@ body{
 
   <div class="layout">
 
-    <!-- =================================
-         左：YouTube動画＋漫画
-    ================================== -->
+    <!-- 左：動画＋漫画 -->
 
     <main class="main">
 
       <div class="video">
-
-        <iframe
-          id="player"
-          src=""
-          title="YouTube video player"
-          allow="autoplay; encrypted-media; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-
+        <div id="player"></div>
       </div>
-
-
-      <!-- =================================
-           GhostError
-      ================================== -->
 
       <section class="manga">
 
@@ -370,44 +285,34 @@ body{
 
         </div>
 
-        <div class="manga-pages">
+        <img
+          class="manga-page"
+          src="manga01.jpg"
+          alt="GhostError 第1話">
 
-          <img
-            class="manga-page"
-            src="manga01.jpg"
-            alt="GhostError 第1話 1ページ目"
-            loading="lazy">
+        <img
+          class="manga-page"
+          src="manga02.jpg"
+          alt="GhostError 第1話">
 
-          <img
-            class="manga-page"
-            src="manga02.jpg"
-            alt="GhostError 第1話 2ページ目"
-            loading="lazy">
+        <img
+          class="manga-page"
+          src="manga03.jpg"
+          alt="GhostError 第1話">
 
-          <img
-            class="manga-page"
-            src="manga03.jpg"
-            alt="GhostError 第1話 3ページ目"
-            loading="lazy">
-
-          <img
-            class="manga-page"
-            src="manga04.jpg"
-            alt="GhostError 第1話 4ページ目"
-            loading="lazy">
-
-        </div>
+        <img
+          class="manga-page"
+          src="manga04.jpg"
+          alt="GhostError 第1話">
 
       </section>
 
     </main>
 
 
-    <!-- =================================
-         右：おすすめ
-    ================================== -->
+    <!-- 右：おすすめ -->
 
-    <aside class="recommend">
+    <aside>
 
       <div id="videoList" class="list">
 
@@ -427,7 +332,7 @@ body{
 <script>
 
 /* ==========================================
-   YouTube Data API
+   設定
 ========================================== */
 
 const API_KEY =
@@ -439,30 +344,159 @@ const CHANNEL_ID =
 const API_BASE =
   "https://www.googleapis.com/youtube/v3";
 
+let youtubePlayer = null;
+
 
 /* ==========================================
-   初期化
+   YouTube IFrame API
+========================================== */
+
+function loadYouTubeAPI(){
+
+  return new Promise((resolve,reject)=>{
+
+    if(
+      window.YT &&
+      window.YT.Player
+    ){
+
+      resolve();
+      return;
+    }
+
+    window.onYouTubeIframeAPIReady =
+      function(){
+
+        resolve();
+
+      };
+
+    const script =
+      document.createElement("script");
+
+    script.src =
+      "https://www.youtube.com/iframe_api";
+
+    script.onerror =
+      function(){
+
+        reject(
+          new Error(
+            "YouTube IFrame APIの読み込みに失敗"
+          )
+        );
+
+      };
+
+    document.head.appendChild(script);
+
+  });
+
+}
+
+
+/* ==========================================
+   プレイヤー作成
+========================================== */
+
+function createPlayer(videoId){
+
+  youtubePlayer =
+    new YT.Player(
+      "player",
+      {
+
+        width:"100%",
+        height:"100%",
+
+        videoId:videoId,
+
+        playerVars:{
+          autoplay:1,
+          playsinline:1,
+          controls:1,
+          rel:0
+        },
+
+        events:{
+
+          onReady:function(event){
+
+            /*
+             * 自動再生用。
+             * まずミュートして再生。
+             *
+             * 今回はブラウザの
+             * 自動再生制限を避けるため
+             * ミュート固定。
+             */
+
+            event.target.mute();
+
+            event.target.playVideo();
+
+          }
+
+        }
+
+      }
+    );
+
+}
+
+
+/* ==========================================
+   おすすめから動画変更
+========================================== */
+
+function playVideo(videoId){
+
+  if(!youtubePlayer){
+
+    createPlayer(videoId);
+
+    return;
+  }
+
+  youtubePlayer.loadVideoById({
+    videoId:videoId,
+    startSeconds:0
+  });
+
+  youtubePlayer.mute();
+  youtubePlayer.playVideo();
+
+}
+
+
+/* ==========================================
+   YouTube APIから動画取得
 ========================================== */
 
 async function init(){
 
   const list =
-    document.getElementById("videoList");
+    document.getElementById(
+      "videoList"
+    );
 
   try{
 
-    /*
-      チャンネル情報取得
-    */
+    /* チャンネル情報 */
 
     const channelURL =
-      `${API_BASE}/channels` +
-      `?part=contentDetails,snippet` +
-      `&id=${CHANNEL_ID}` +
-      `&key=${API_KEY}`;
+      API_BASE +
+      "/channels" +
+      "?part=contentDetails" +
+      "&id=" +
+      CHANNEL_ID +
+      "&key=" +
+      API_KEY;
+
 
     const channelResponse =
       await fetch(channelURL);
+
 
     if(!channelResponse.ok){
 
@@ -472,12 +506,14 @@ async function init(){
 
     }
 
+
     const channelData =
       await channelResponse.json();
 
+
     if(
       !channelData.items ||
-      !channelData.items.length
+      channelData.items.length === 0
     ){
 
       throw new Error(
@@ -486,27 +522,31 @@ async function init(){
 
     }
 
+
     const uploadsPlaylist =
       channelData
-      .items[0]
-      .contentDetails
-      .relatedPlaylists
-      .uploads;
+        .items[0]
+        .contentDetails
+        .relatedPlaylists
+        .uploads;
 
 
-    /*
-      動画一覧取得
-    */
+    /* 動画一覧 */
 
     const playlistURL =
-      `${API_BASE}/playlistItems` +
-      `?part=snippet,contentDetails` +
-      `&playlistId=${uploadsPlaylist}` +
-      `&maxResults=20` +
-      `&key=${API_KEY}`;
+      API_BASE +
+      "/playlistItems" +
+      "?part=snippet,contentDetails" +
+      "&playlistId=" +
+      uploadsPlaylist +
+      "&maxResults=20" +
+      "&key=" +
+      API_KEY;
+
 
     const playlistResponse =
       await fetch(playlistURL);
+
 
     if(!playlistResponse.ok){
 
@@ -516,165 +556,156 @@ async function init(){
 
     }
 
+
     const playlistData =
       await playlistResponse.json();
+
 
     const videos =
       playlistData.items || [];
 
 
-    /*
-      最初の動画を自動再生
-      ※ mute=1 は一切使用しない
-    */
+    /* ======================================
+       最新動画を自動再生
+    ====================================== */
 
     if(videos.length){
 
-      setMainVideo(
+      const firstVideoId =
         videos[0]
-        .contentDetails
-        .videoId
+          .contentDetails
+          .videoId;
+
+
+      await loadYouTubeAPI();
+
+      createPlayer(
+        firstVideoId
       );
 
     }
 
 
-    /*
-      おすすめ動画作成
-    */
+    /* ======================================
+       おすすめ欄
+    ====================================== */
 
     list.innerHTML = "";
 
 
-    videos.forEach(video=>{
+    videos.forEach(
+      function(video){
 
-      const snippet =
-        video.snippet;
-
-      const videoId =
-        video.contentDetails.videoId;
-
-      if(!videoId) return;
-
-      const title =
-        escapeHTML(snippet.title);
-
-      const channelTitle =
-        escapeHTML(snippet.channelTitle);
-
-      const thumbnail =
-        snippet.thumbnails?.medium?.url ||
-        snippet.thumbnails?.high?.url ||
-        snippet.thumbnails?.default?.url;
+        const videoId =
+          video
+            .contentDetails
+            .videoId;
 
 
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "item";
-
-
-      item.innerHTML = `
-
-        <div class="thumb">
-
-          <img
-            src="${thumbnail}"
-            alt=""
-            loading="lazy">
-
-        </div>
-
-        <div class="info">
-
-          <div class="title">
-            ${title}
-          </div>
-
-          <div class="channel">
-            ${channelTitle}
-          </div>
-
-        </div>
-
-      `;
-
-
-      /*
-        おすすめ動画をクリック
-      */
-
-      item.addEventListener(
-        "click",
-        ()=>{
-
-          setMainVideo(videoId);
-
-          window.scrollTo({
-            top:0,
-            behavior:"smooth"
-          });
-
+        if(!videoId){
+          return;
         }
-      );
 
 
-      list.appendChild(item);
+        const snippet =
+          video.snippet;
 
-    });
+
+        const title =
+          escapeHTML(
+            snippet.title
+          );
 
 
-    if(!videos.length){
+        const channel =
+          escapeHTML(
+            snippet.channelTitle
+          );
 
-      list.innerHTML = `
-        <div class="error">
-          動画がありません。
-        </div>
-      `;
 
-    }
+        const thumbnail =
+          snippet
+            .thumbnails
+            ?.medium
+            ?.url ||
+          snippet
+            .thumbnails
+            ?.high
+            ?.url ||
+          snippet
+            .thumbnails
+            ?.default
+            ?.url;
+
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+
+        item.className =
+          "item";
+
+
+        item.innerHTML = `
+
+          <div class="thumb">
+
+            <img
+              src="${thumbnail}"
+              alt=""
+              loading="lazy">
+
+          </div>
+
+          <div class="info">
+
+            <div class="title">
+              ${title}
+            </div>
+
+            <div class="channel">
+              ${channel}
+            </div>
+
+          </div>
+
+        `;
+
+
+        item.addEventListener(
+          "click",
+          function(){
+
+            playVideo(
+              videoId
+            );
+
+          }
+        );
+
+
+        list.appendChild(item);
+
+      }
+    );
+
 
   }catch(error){
 
     console.error(error);
 
+
     list.innerHTML = `
       <div class="error">
-        YouTube動画を取得できませんでした。<br>
-        APIキーまたはAPI設定を確認してください。
+        YouTube動画を取得できませんでした。
+        <br>
+        APIキーまたはYouTube Data APIの設定を確認してください。
       </div>
     `;
 
   }
-
-}
-
-
-/* ==========================================
-   メイン動画
-   音声あり自動再生を要求
-========================================== */
-
-function setMainVideo(videoId){
-
-  const player =
-    document.getElementById("player");
-
-  /*
-    重要：
-    mute=1 は入れていない。
-
-    autoplay=1 → 自動再生
-    playsinline=1 → スマホでもページ内再生
-    rel=0 → 関連動画を同チャンネル中心にする
-  */
-
-  player.src =
-    `https://www.youtube.com/embed/${videoId}` +
-    `?autoplay=1` +
-    `&playsinline=1` +
-    `&rel=0`;
 
 }
 
@@ -686,7 +717,9 @@ function setMainVideo(videoId){
 function escapeHTML(text){
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   div.textContent =
     text || "";
@@ -697,7 +730,7 @@ function escapeHTML(text){
 
 
 /* ==========================================
-   START
+   起動
 ========================================== */
 
 init();
