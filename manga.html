@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GhostError 第1話</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  background:#111;
+  color:#fff;
+  font-family:Arial,"Noto Sans JP",sans-serif;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#111;
+  border-bottom:1px solid #333;
+  padding:14px 18px;
+}
+
+.title{
+  font-size:24px;
+  font-weight:800;
+}
+
+.episode{
+  margin-top:4px;
+  color:#999;
+  font-size:13px;
+}
+
+.manga{
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
+  background:#fff;
+}
+
+.page{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* 漫画がまだない場合 */
+.notice{
+  padding:60px 20px;
+  color:#555;
+  text-align:center;
+  font-size:16px;
+}
+
+@media(max-width:600px){
+
+  .header{
+    padding:10px 12px;
+  }
+
+  .title{
+    font-size:20px;
+  }
+
+  .episode{
+    font-size:11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="title">
+    GhostError
+  </div>
+
+  <div class="episode">
+    第1話
+  </div>
+
+</header>
+
+
+<main class="manga">
+
+  <!--
+    漫画画像をここに差し込む。
+    manga01.jpg ～ manga04.jpg を
+    このHTMLと同じフォルダに置く。
+  -->
+
+  <img
+    class="page"
+    src="manga01.jpg"
+    alt="GhostError 第1話 1ページ">
+
+  <img
+    class="page"
+    src="manga02.jpg"
+    alt="GhostError 第1話 2ページ">
+
+  <img
+    class="page"
+    src="manga03.jpg"
+    alt="GhostError 第1話 3ページ">
+
+  <img
+    class="page"
+    src="manga04.jpg"
+    alt="GhostError 第1話 4ページ">
+
+</main>
+
+</body>
+</html>
