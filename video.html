@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GhostError - Video</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#0f0f0f;
+  color:#fff;
+  font-family:Arial,"Noto Sans JP",sans-serif;
+}
+
+.page{
+  width:100%;
+  max-width:1700px;
+  margin:auto;
+  padding:20px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 420px;
+  gap:20px;
+}
+
+.video{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+#player{
+  width:100%;
+  height:100%;
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.item{
+  display:grid;
+  grid-template-columns:175px minmax(0,1fr);
+  gap:10px;
+  padding:3px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.item:hover{
+  background:#272727;
+}
+
+.thumb{
+  width:175px;
+  aspect-ratio:16/9;
+  background:#222;
+  overflow:hidden;
+  border-radius:7px;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.title{
+  font-size:14px;
+  line-height:1.4;
+  font-weight:600;
+
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+.channel{
+  margin-top:6px;
+  color:#aaa;
+  font-size:12px;
+}
+
+.loading,
+.error{
+  padding:10px;
+  color:#aaa;
+  font-size:13px;
+}
+
+/* スマホも動画＋おすすめを左右に表示 */
+
+@media(max-width:700px){
+
+  .page{
+    padding:5px;
+  }
+
+  .layout{
+    grid-template-columns:minmax(0,1fr) 135px;
+    gap:7px;
+  }
+
+  .item{
+    display:block;
+    padding:0;
+  }
+
+  .thumb{
+    width:100%;
+    border-radius:5px;
+  }
+
+  .title{
+    font-size:10px;
+  }
+
+  .channel{
+    font-size:8px;
+    margin-top:2px;
+  }
+}
+
+@media(max-width:420px){
+
+  .layout{
+    grid-template-columns:minmax(0,1fr) 120px;
+    gap:5px;
+  }
+
+  .title{
+    font-size:9px;
+  }
+
+  .channel{
+    font-size:7px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="layout">
+
+    <!-- YouTube -->
+
+    <main>
+
+      <div class="video">
+        <div id="player"></div>
+      </div>
+
+    </main>
+
+
+    <!-- おすすめ -->
+
+    <aside>
+
+      <div id="videoList" class="list">
+
+        <div class="loading">
+          動画を読み込んでいます…
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const API_KEY =
+  "AIzaSyAffHbfRoiwRy1_Kz7reVyQsNr0UPJinvQ";
+
+const CHANNEL_ID =
+  "UCsvwCi51I9pFl3fVf18pWEQ";
+
+const API_BASE =
+  "https://www.googleapis.com/youtube/v3";
+
+let player = null;
+
+
+/* ================================
+   YouTube IFrame APIを読み込む
+================================ */
+
+function loadYouTubeAPI(){
+
+  return new Promise((resolve,reject)=>{
+
+    if(window.YT && window.YT.Player){
+      resolve();
+      return;
+    }
+
+    window.onYouTubeIframeAPIReady =
+      () => resolve();
+
+    const script =
+      document.createElement("script");
+
+    script.src =
+      "https://www.youtube.com/iframe_api";
+
+    script.onerror =
+      () => reject(
+        new Error("YouTube APIの読み込みに失敗しました")
+      );
+
+    document.head.appendChild(script);
+
+  });
+
+}
+
+
+/* ================================
+   自動再生プレイヤー
+   ミュートあり
+================================ */
+
+function createPlayer(videoId){
+
+  player = new YT.Player(
+    "player",
+    {
+      width:"100%",
+      height:"100%",
+
+      videoId:videoId,
+
+      playerVars:{
+        autoplay:1,
+        playsinline:1,
+        controls:1,
+        rel:0
+      },
+
+      events:{
+
+        onReady:function(event){
+
+          // 自動再生を安定させるためミュート
+          event.target.mute();
+
+          event.target.playVideo();
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ================================
+   おすすめ動画を再生
+================================ */
+
+function playVideo(videoId){
+
+  if(!player){
+    createPlayer(videoId);
+    return;
+  }
+
+  player.loadVideoById(videoId);
+
+  player.mute();
+  player.playVideo();
+
+}
+
+
+/* ================================
+   動画一覧取得
+================================ */
+
+async function init(){
+
+  const list =
+    document.getElementById("videoList");
+
+  try{
+
+    /* チャンネル情報 */
+
+    const channelURL =
+      API_BASE +
+      "/channels" +
+      "?part=contentDetails" +
+      "&id=" +
+      CHANNEL_ID +
+      "&key=" +
+      API_KEY;
+
+    const channelResponse =
+      await fetch(channelURL);
+
+    if(!channelResponse.ok){
+      throw new Error("チャンネル取得失敗");
+    }
+
+    const channelData =
+      await channelResponse.json();
+
+    if(
+      !channelData.items ||
+      channelData.items.length === 0
+    ){
+      throw new Error("チャンネルが見つかりません");
+    }
+
+    const uploadsPlaylist =
+      channelData.items[0]
+        .contentDetails
+        .relatedPlaylists
+        .uploads;
+
+
+    /* 動画一覧 */
+
+    const playlistURL =
+      API_BASE +
+      "/playlistItems" +
+      "?part=snippet,contentDetails" +
+      "&playlistId=" +
+      uploadsPlaylist +
+      "&maxResults=20" +
+      "&key=" +
+      API_KEY;
+
+    const response =
+      await fetch(playlistURL);
+
+    if(!response.ok){
+      throw new Error("動画一覧取得失敗");
+    }
+
+    const data =
+      await response.json();
+
+    const videos =
+      data.items || [];
+
+
+    /* ================================
+       最新動画を自動再生
+    ================================ */
+
+    if(videos.length){
+
+      const videoId =
+        videos[0]
+          .contentDetails
+          .videoId;
+
+      await loadYouTubeAPI();
+
+      createPlayer(videoId);
+
+    }
+
+
+    /* ================================
+       おすすめ表示
+    ================================ */
+
+    list.innerHTML = "";
+
+    videos.forEach(video=>{
+
+      const videoId =
+        video.contentDetails.videoId;
+
+      const snippet =
+        video.snippet;
+
+      const thumbnail =
+        snippet.thumbnails?.medium?.url ||
+        snippet.thumbnails?.high?.url ||
+        snippet.thumbnails?.default?.url;
+
+      const item =
+        document.createElement("div");
+
+      item.className = "item";
+
+      item.innerHTML = `
+
+        <div class="thumb">
+
+          <img
+            src="${thumbnail}"
+            alt=""
+            loading="lazy">
+
+        </div>
+
+        <div>
+
+          <div class="title">
+            ${escapeHTML(snippet.title)}
+          </div>
+
+          <div class="channel">
+            ${escapeHTML(snippet.channelTitle)}
+          </div>
+
+        </div>
+
+      `;
+
+      item.addEventListener(
+        "click",
+        ()=>{
+          playVideo(videoId);
+        }
+      );
+
+      list.appendChild(item);
+
+    });
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    list.innerHTML = `
+      <div class="error">
+        YouTube動画を取得できませんでした。
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* ================================
+   HTMLエスケープ
+================================ */
+
+function escapeHTML(text){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    text || "";
+
+  return div.innerHTML;
+
+}
+
+
+/* ================================
+   起動
+================================ */
+
+init();
+
+</script>
+
+</body>
+</html>
