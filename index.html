@@ -172,7 +172,11 @@ body {
   overflow: hidden;
 }
 
-.manga-header {
+/* =========================================
+   作品タイトル
+========================================= */
+
+.manga-main-title {
   background: #111;
   color: #fff;
   padding: 18px 20px;
@@ -183,10 +187,21 @@ body {
   font-weight: 800;
 }
 
+/* =========================================
+   各話タイトル
+========================================= */
+
+.manga-header {
+  background: #111;
+  color: #fff;
+  padding: 14px 20px;
+  border-top: 1px solid #333;
+}
+
 .manga-episode {
-  margin-top: 5px;
-  color: #aaa;
-  font-size: 14px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 1.5;
 }
 
@@ -304,7 +319,7 @@ body {
     border-radius: 5px;
   }
 
-  .manga-header {
+  .manga-main-title {
     padding: 10px 12px;
   }
 
@@ -312,8 +327,12 @@ body {
     font-size: 20px;
   }
 
+  .manga-header {
+    padding: 10px 12px;
+  }
+
   .manga-episode {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.5;
   }
 }
@@ -335,6 +354,14 @@ body {
 
   .item-channel {
     font-size: 7px;
+  }
+
+  .manga-title {
+    font-size: 18px;
+  }
+
+  .manga-episode {
+    font-size: 10px;
   }
 }
 </style>
@@ -375,14 +402,23 @@ body {
       <section class="manga">
 
         <!-- =====================================
-             第一話
+             作品タイトル
         ====================================== -->
 
-        <div class="manga-header">
+        <div class="manga-main-title">
 
           <div class="manga-title">
             プリンワールド
           </div>
+
+        </div>
+
+
+        <!-- =====================================
+             第一話
+        ====================================== -->
+
+        <div class="manga-header">
 
           <div class="manga-episode">
             第一話「プリンを食べて寝たら、異世界に召喚された」
@@ -405,7 +441,6 @@ body {
         ====================================== -->
 
         <div class="manga-header">
-          </div>
 
           <div class="manga-episode">
             第二話「プリンの女神とヨーグルトの女神～なぜか国同士が喧嘩してました～」
