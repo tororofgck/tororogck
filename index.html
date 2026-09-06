@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GhostError</title>
+<title>プリンワールド</title>
 
 <style>
 * {
@@ -160,7 +160,7 @@ body {
 }
 
 /* =========================================
-   GhostError 漫画
+   プリンワールド 漫画
 ========================================= */
 
 .manga {
@@ -367,7 +367,7 @@ body {
 
 
       <!-- =====================================
-           GhostError
+           プリンワールド
       ====================================== -->
 
       <section class="manga">
@@ -375,11 +375,11 @@ body {
         <div class="manga-header">
 
           <div class="manga-title">
-            GhostError
+            プリンワールド
           </div>
 
           <div class="manga-episode">
-            第1話
+            第一話「プリンを食べて寝たら、異世界に召喚された」
           </div>
 
         </div>
@@ -388,23 +388,8 @@ body {
 
           <img
             class="manga-page"
-            src="manga01.jpg"
-            alt="GhostError 第1話 1ページ目">
-
-          <img
-            class="manga-page"
-            src="manga02.jpg"
-            alt="GhostError 第1話 2ページ目">
-
-          <img
-            class="manga-page"
-            src="manga03.jpg"
-            alt="GhostError 第1話 3ページ目">
-
-          <img
-            class="manga-page"
-            src="manga04.jpg"
-            alt="GhostError 第1話 4ページ目">
+            src="PSX_20260906_190250.png"
+            alt="プリンワールド 第一話">
 
         </div>
 
@@ -529,15 +514,7 @@ function createPlayer(videoId) {
 
         playerVars: {
 
-          /*
-            最初から自動再生
-          */
-
           autoplay: 1,
-
-          /*
-            スマホのページ内再生
-          */
 
           playsinline: 1,
 
@@ -551,11 +528,6 @@ function createPlayer(videoId) {
 
           onReady: function (event) {
 
-            /*
-              ブラウザの自動再生制限対策。
-              まずミュートして自動再生。
-            */
-
             event.target.mute();
 
             event.target.playVideo();
@@ -565,10 +537,6 @@ function createPlayer(videoId) {
 
           onStateChange:
             function (event) {
-
-              /*
-                動画終了
-              */
 
               if (
                 event.data ===
@@ -599,18 +567,7 @@ function playNextVideo() {
     return;
   }
 
-
-  /*
-    次の動画へ
-  */
-
   currentIndex++;
-
-
-  /*
-    最後まで行ったら
-    先頭に戻る
-  */
 
   if (
     currentIndex >= videos.length
@@ -620,46 +577,24 @@ function playNextVideo() {
 
   }
 
-
   const nextVideo =
     videos[currentIndex];
-
 
   const nextVideoId =
     nextVideo
       .contentDetails
       .videoId;
 
-
-  /*
-    おすすめ欄の選択状態を更新
-  */
-
   updateActiveItem();
-
-
-  /*
-    タイトル更新
-  */
 
   updateVideoInfo(
     nextVideo
   );
 
-
-  /*
-    次の動画を再生
-  */
-
   player.loadVideoById({
     videoId: nextVideoId,
     startSeconds: 0
   });
-
-
-  /*
-    ミュート状態を維持
-  */
 
   player.mute();
 
@@ -681,34 +616,24 @@ function playVideo(index) {
     return;
   }
 
-
   currentIndex = index;
-
 
   const video =
     videos[currentIndex];
-
 
   const videoId =
     video
       .contentDetails
       .videoId;
 
-
   updateActiveItem();
 
   updateVideoInfo(video);
-
 
   player.loadVideoById({
     videoId: videoId,
     startSeconds: 0
   });
-
-
-  /*
-    自動再生＋ミュート
-  */
 
   player.mute();
 
@@ -727,7 +652,6 @@ function updateActiveItem() {
     document.querySelectorAll(
       ".video-item"
     );
-
 
   items.forEach(
     (item, index) => {
@@ -761,12 +685,10 @@ function updateVideoInfo(video) {
     return;
   }
 
-
   document.getElementById(
     "currentTitle"
   ).textContent =
     video.snippet.title;
-
 
   document.getElementById(
     "currentChannel"
@@ -787,9 +709,7 @@ function renderVideoList() {
       "videoList"
     );
 
-
   list.innerHTML = "";
-
 
   videos.forEach(
     (video, index) => {
@@ -797,24 +717,19 @@ function renderVideoList() {
       const snippet =
         video.snippet;
 
-
       const videoId =
         video.contentDetails.videoId;
-
 
       const thumbnail =
         snippet.thumbnails?.medium?.url ||
         snippet.thumbnails?.high?.url ||
         snippet.thumbnails?.default?.url;
 
-
       const item =
         document.createElement("div");
 
-
       item.className =
         "video-item";
-
 
       item.innerHTML = `
 
@@ -845,7 +760,6 @@ function renderVideoList() {
 
       `;
 
-
       item.addEventListener(
         "click",
         function () {
@@ -855,12 +769,10 @@ function renderVideoList() {
         }
       );
 
-
       list.appendChild(item);
 
     }
   );
-
 
   updateActiveItem();
 
@@ -877,7 +789,6 @@ async function loadVideos() {
     document.getElementById(
       "videoList"
     );
-
 
   try {
 
@@ -898,10 +809,8 @@ async function loadVideos() {
         API_KEY
       );
 
-
     const channelResponse =
       await fetch(channelURL);
-
 
     if (!channelResponse.ok) {
 
@@ -911,10 +820,8 @@ async function loadVideos() {
 
     }
 
-
     const channelData =
       await channelResponse.json();
-
 
     if (
       !channelData.items ||
@@ -927,14 +834,12 @@ async function loadVideos() {
 
     }
 
-
     const uploadsPlaylist =
       channelData
         .items[0]
         .contentDetails
         .relatedPlaylists
         .uploads;
-
 
     /*
       アップロード動画一覧
@@ -954,10 +859,8 @@ async function loadVideos() {
         API_KEY
       );
 
-
     const playlistResponse =
       await fetch(playlistURL);
-
 
     if (!playlistResponse.ok) {
 
@@ -967,14 +870,11 @@ async function loadVideos() {
 
     }
 
-
     const playlistData =
       await playlistResponse.json();
 
-
     videos =
       playlistData.items || [];
-
 
     if (!videos.length) {
 
@@ -984,13 +884,11 @@ async function loadVideos() {
 
     }
 
-
     /*
       おすすめ欄を作る
     */
 
     renderVideoList();
-
 
     /*
       1番上からスタート
@@ -998,22 +896,18 @@ async function loadVideos() {
 
     currentIndex = 0;
 
-
     const firstVideo =
       videos[0];
-
 
     updateVideoInfo(
       firstVideo
     );
-
 
     /*
       YouTube IFrame APIを読み込む
     */
 
     await loadYouTubeAPI();
-
 
     /*
       1番上を自動再生
@@ -1025,12 +919,10 @@ async function loadVideos() {
         .videoId
     );
 
-
   }
   catch (error) {
 
     console.error(error);
-
 
     list.innerHTML = `
       <div class="error">
