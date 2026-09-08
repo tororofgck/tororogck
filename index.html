@@ -160,7 +160,7 @@ body {
 }
 
 /* =========================================
-   プリンワールド 漫画
+   プリンワールド
 ========================================= */
 
 .manga {
@@ -188,25 +188,58 @@ body {
 }
 
 /* =========================================
-   各話タイトル
+   周目プルダウン
 ========================================= */
 
-.manga-header {
+.manga-round-selector {
   background: #111;
-  color: #fff;
-  padding: 14px 20px;
+  padding: 12px 20px;
   border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
-.manga-episode {
+.manga-round-select {
+  width: 100%;
+  padding: 12px 42px 12px 14px;
+
+  background: #222;
   color: #fff;
-  font-size: 16px;
+
+  border: 1px solid #555;
+  border-radius: 8px;
+
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.5;
+
+  cursor: pointer;
+
+  appearance: auto;
+  -webkit-appearance: auto;
 }
+
+.manga-round-select:focus {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+/* =========================================
+   漫画
+   タイトル → 画像 → タイトル → 画像
+========================================= */
 
 .manga-pages {
   width: 100%;
+  background: #fff;
+}
+
+.manga-episode-title {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .manga-page {
@@ -245,6 +278,10 @@ body {
   .item-channel {
     font-size: 10px;
   }
+
+  .manga-episode-title {
+    font-size: 14px;
+  }
 }
 
 /* =========================================
@@ -256,12 +293,6 @@ body {
   .page {
     padding: 5px;
   }
-
-  /*
-    スマホでも
-    動画：左
-    おすすめ：右
-  */
 
   .content {
     grid-template-columns: minmax(0, 1fr) 135px;
@@ -327,11 +358,18 @@ body {
     font-size: 20px;
   }
 
-  .manga-header {
-    padding: 10px 12px;
+  .manga-round-selector {
+    padding: 8px 10px;
   }
 
-  .manga-episode {
+  .manga-round-select {
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+
+  .manga-episode-title {
+    padding: 10px 12px;
     font-size: 11px;
     line-height: 1.5;
   }
@@ -360,7 +398,11 @@ body {
     font-size: 18px;
   }
 
-  .manga-episode {
+  .manga-round-select {
+    font-size: 12px;
+  }
+
+  .manga-episode-title {
     font-size: 10px;
   }
 }
@@ -396,14 +438,12 @@ body {
 
 
       <!-- =====================================
-           プリンワールド 漫画
+           プリンワールド
       ====================================== -->
 
       <section class="manga">
 
-        <!-- =====================================
-             作品タイトル
-        ====================================== -->
+        <!-- 作品タイトル -->
 
         <div class="manga-main-title">
 
@@ -415,69 +455,51 @@ body {
 
 
         <!-- =====================================
-             第一話
+             周目選択
         ====================================== -->
 
-        <div class="manga-header">
+        <div class="manga-round-selector">
 
-          <div class="manga-episode">
-            第一話「プリンを食べて寝たら、異世界に召喚された」
-          </div>
+          <select
+            id="mangaRoundSelect"
+            class="manga-round-select"
+            onchange="changeMangaRound(this.value)"
+          >
 
-        </div>
+            <option value="1">1周目</option>
+            <option value="2">2周目</option>
+            <option value="3">3周目</option>
+            <option value="4">4周目</option>
+            <option value="5">5周目</option>
+            <option value="6">6周目</option>
+            <option value="7">7周目</option>
+            <option value="8">8周目</option>
+            <option value="9">9周目</option>
+            <option value="10">10周目</option>
+            <option value="11">11周目</option>
+            <option value="12">12周目</option>
+            <option value="13">13周目</option>
+            <option value="14">14周目</option>
+            <option value="15">15周目</option>
+            <option value="16">16周目</option>
+            <option value="17">17周目</option>
+            <option value="18">18周目</option>
+            <option value="19">19周目</option>
+            <option value="20">20周目</option>
 
-        <div class="manga-pages">
-
-          <img
-            class="manga-page"
-            src="pudding_episode01.png"
-            alt="プリンワールド 第一話">
+          </select>
 
         </div>
 
 
         <!-- =====================================
-             第二話
+             漫画表示
         ====================================== -->
 
-        <div class="manga-header">
-
-          <div class="manga-episode">
-            第二話「プリンの女神とヨーグルトの女神～なぜか国同士が喧嘩してました～」
-          </div>
-
-        </div>
-
-        <div class="manga-pages">
-
-          <img
-            class="manga-page"
-            src="pudding_episode02.png"
-            alt="プリンワールド 第二話">
-
-        </div>
-
-
-        <!-- =====================================
-             第三話
-        ====================================== -->
-
-        <div class="manga-header">
-
-          <div class="manga-episode">
-            第三話「異世界の勇者になった俺、チート能力をもらえるらしい」
-          </div>
-
-        </div>
-
-        <div class="manga-pages">
-
-          <img
-            class="manga-page"
-            src="pudding_episode03.png"
-            alt="プリンワールド 第三話">
-
-        </div>
+        <div
+          id="mangaPages"
+          class="manga-pages"
+        ></div>
 
       </section>
 
@@ -494,7 +516,10 @@ body {
         おすすめ
       </div>
 
-      <div id="videoList" class="video-list">
+      <div
+        id="videoList"
+        class="video-list"
+      >
 
         <div class="loading">
           動画を読み込んでいます…
@@ -512,7 +537,7 @@ body {
 <script>
 
 /* =========================================
-   設定
+   YouTube設定
 ========================================= */
 
 const API_KEY =
@@ -537,46 +562,310 @@ let currentIndex = 0;
 
 
 /* =========================================
+   漫画設定
+========================================= */
+
+/*
+  1周 = 4話
+
+  1周目
+  第1話 → 1.png
+  第2話 → 2.png
+  第3話 → 3.png
+  第4話 → pudding_episode04.png
+
+  2周目
+  第5話 → 5.png
+  第6話 → 6.png
+  第7話 → 7.png
+  第8話 → 8.png
+
+  3周目
+  第9話  → 9.png
+  第10話 → 10.png
+  第11話 → 11.png
+  第12話 → 12.png
+
+  ...
+
+  20周目
+  第77話 → 77.png
+  第78話 → 78.png
+  第79話 → 79.png
+  第80話 → 80.png
+*/
+
+const MANGA_IMAGES_PER_ROUND = 4;
+
+
+/* =========================================
+   話数タイトル
+========================================= */
+
+const MANGA_EPISODES = {
+
+  1:
+    '第一話「プリンを食べて寝たら、異世界に召喚された」',
+
+  2:
+    '第二話「プリンの女神とヨーグルトの女神～なぜか国同士が喧嘩してました～」',
+
+  3:
+    '第三話「異世界の勇者に選ばれた俺、プリン博士の研究所へ行くことになりました」',
+
+  4:
+    '第四話「召喚した猫、まさかの伝説級！？〜あくびで研究所が吹き飛んだ〜」'
+
+};
+
+
+/* =========================================
+   話数タイトル取得
+========================================= */
+
+function getEpisodeTitle(episodeNumber) {
+
+  if (
+    MANGA_EPISODES[episodeNumber]
+  ) {
+
+    return MANGA_EPISODES[episodeNumber];
+
+  }
+
+
+  return "第" +
+    episodeNumber +
+    "話";
+
+}
+
+
+/* =========================================
+   漫画 周目変更
+========================================= */
+
+function changeMangaRound(round) {
+
+  round =
+    parseInt(
+      round,
+      10
+    );
+
+
+  if (
+    isNaN(round) ||
+    round < 1 ||
+    round > 20
+  ) {
+
+    return;
+
+  }
+
+
+  const pages =
+    document.getElementById(
+      "mangaPages"
+    );
+
+
+  /*
+    一度クリア
+  */
+
+  pages.innerHTML = "";
+
+
+  /*
+    その周目の最初の話数
+
+    1周目 → 第1話
+    2周目 → 第5話
+    3周目 → 第9話
+    ...
+    20周目 → 第77話
+  */
+
+  const startEpisode =
+    (
+      (round - 1) *
+      MANGA_IMAGES_PER_ROUND
+    ) + 1;
+
+
+  /*
+    4話分を
+
+    タイトル
+    ↓
+    画像
+    ↓
+    タイトル
+    ↓
+    画像
+
+    の順番で表示
+  */
+
+  for (
+    let i = 0;
+    i < MANGA_IMAGES_PER_ROUND;
+    i++
+  ) {
+
+    const episodeNumber =
+      startEpisode + i;
+
+
+    /*
+      ================================
+      タイトル
+      ================================
+    */
+
+    const title =
+      document.createElement(
+        "div"
+      );
+
+
+    title.className =
+      "manga-episode-title";
+
+
+    title.textContent =
+      getEpisodeTitle(
+        episodeNumber
+      );
+
+
+    pages.appendChild(
+      title
+    );
+
+
+    /*
+      ================================
+      画像
+      ================================
+    */
+
+    const img =
+      document.createElement(
+        "img"
+      );
+
+
+    img.className =
+      "manga-page";
+
+
+    /*
+      第4話だけ専用画像
+    */
+
+    if (
+      episodeNumber === 4
+    ) {
+
+      img.src =
+        "pudding_episode04.png";
+
+    }
+    else {
+
+      img.src =
+        episodeNumber +
+        ".png";
+
+    }
+
+
+    img.alt =
+      getEpisodeTitle(
+        episodeNumber
+      );
+
+
+    img.loading =
+      "lazy";
+
+
+    pages.appendChild(
+      img
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   初期表示
+========================================= */
+
+changeMangaRound(1);
+
+
+/* =========================================
    YouTube IFrame API
 ========================================= */
 
 function loadYouTubeAPI() {
 
-  return new Promise((resolve, reject) => {
+  return new Promise(
+    (resolve, reject) => {
 
-    if (
-      window.YT &&
-      window.YT.Player
-    ) {
-      resolve();
-      return;
-    }
+      if (
+        window.YT &&
+        window.YT.Player
+      ) {
 
-    window.onYouTubeIframeAPIReady =
-      function () {
         resolve();
-      };
 
-    const script =
-      document.createElement("script");
+        return;
 
-    script.src =
-      "https://www.youtube.com/iframe_api";
+      }
 
-    script.onerror =
-      function () {
 
-        reject(
-          new Error(
-            "YouTube IFrame APIの読み込みに失敗しました"
-          )
+      window.onYouTubeIframeAPIReady =
+        function () {
+
+          resolve();
+
+        };
+
+
+      const script =
+        document.createElement(
+          "script"
         );
 
-      };
 
-    document.head.appendChild(script);
+      script.src =
+        "https://www.youtube.com/iframe_api";
 
-  });
+
+      script.onerror =
+        function () {
+
+          reject(
+            new Error(
+              "YouTube IFrame APIの読み込みに失敗しました"
+            )
+          );
+
+        };
+
+
+      document.head.appendChild(
+        script
+      );
+
+    }
+  );
 
 }
 
@@ -592,37 +881,47 @@ function createPlayer(videoId) {
       "player",
       {
 
-        width: "100%",
+        width:
+          "100%",
 
-        height: "100%",
+        height:
+          "100%",
 
-        videoId: videoId,
+        videoId:
+          videoId,
 
         playerVars: {
 
-          autoplay: 1,
+          autoplay:
+            1,
 
-          playsinline: 1,
+          playsinline:
+            1,
 
-          controls: 1,
+          controls:
+            1,
 
-          rel: 0,
+          rel:
+            0,
 
-          origin: "https://tororofgck.github.io"
+          origin:
+            "https://tororofgck.github.io"
 
         },
 
-        host: "https://www.youtube.com",
+        host:
+          "https://www.youtube.com",
 
         events: {
 
-          onReady: function (event) {
+          onReady:
+            function (event) {
 
-            event.target.mute();
+              event.target.mute();
 
-            event.target.playVideo();
+              event.target.playVideo();
 
-          },
+            },
 
 
           onStateChange:
@@ -653,38 +952,56 @@ function createPlayer(videoId) {
 
 function playNextVideo() {
 
-  if (!videos.length) {
+  if (
+    !videos.length
+  ) {
+
     return;
+
   }
+
 
   currentIndex++;
 
+
   if (
-    currentIndex >= videos.length
+    currentIndex >=
+    videos.length
   ) {
 
     currentIndex = 0;
 
   }
 
+
   const nextVideo =
     videos[currentIndex];
+
 
   const nextVideoId =
     nextVideo
       .contentDetails
       .videoId;
 
+
   updateActiveItem();
+
 
   updateVideoInfo(
     nextVideo
   );
 
+
   player.loadVideoById({
-    videoId: nextVideoId,
-    startSeconds: 0
+
+    videoId:
+      nextVideoId,
+
+    startSeconds:
+      0
+
   });
+
 
   player.mute();
 
@@ -703,27 +1020,44 @@ function playVideo(index) {
     index < 0 ||
     index >= videos.length
   ) {
+
     return;
+
   }
 
-  currentIndex = index;
+
+  currentIndex =
+    index;
+
 
   const video =
     videos[currentIndex];
+
 
   const videoId =
     video
       .contentDetails
       .videoId;
 
+
   updateActiveItem();
 
-  updateVideoInfo(video);
+
+  updateVideoInfo(
+    video
+  );
+
 
   player.loadVideoById({
-    videoId: videoId,
-    startSeconds: 0
+
+    videoId:
+      videoId,
+
+    startSeconds:
+      0
+
   });
+
 
   player.mute();
 
@@ -743,19 +1077,25 @@ function updateActiveItem() {
       ".video-item"
     );
 
+
   items.forEach(
     (item, index) => {
 
       if (
-        index === currentIndex
+        index ===
+        currentIndex
       ) {
 
-        item.classList.add("active");
+        item.classList.add(
+          "active"
+        );
 
       }
       else {
 
-        item.classList.remove("active");
+        item.classList.remove(
+          "active"
+        );
 
       }
 
@@ -772,13 +1112,17 @@ function updateActiveItem() {
 function updateVideoInfo(video) {
 
   if (!video) {
+
     return;
+
   }
+
 
   document.getElementById(
     "currentTitle"
   ).textContent =
     video.snippet.title;
+
 
   document.getElementById(
     "currentChannel"
@@ -799,7 +1143,9 @@ function renderVideoList() {
       "videoList"
     );
 
+
   list.innerHTML = "";
+
 
   videos.forEach(
     (video, index) => {
@@ -807,19 +1153,31 @@ function renderVideoList() {
       const snippet =
         video.snippet;
 
-      const videoId =
-        video.contentDetails.videoId;
 
       const thumbnail =
-        snippet.thumbnails?.medium?.url ||
-        snippet.thumbnails?.high?.url ||
-        snippet.thumbnails?.default?.url;
+        snippet
+          .thumbnails
+          ?.medium
+          ?.url ||
+        snippet
+          .thumbnails
+          ?.high
+          ?.url ||
+        snippet
+          .thumbnails
+          ?.default
+          ?.url;
+
 
       const item =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       item.className =
         "video-item";
+
 
       item.innerHTML = `
 
@@ -850,6 +1208,7 @@ function renderVideoList() {
 
       `;
 
+
       item.addEventListener(
         "click",
         function () {
@@ -859,10 +1218,14 @@ function renderVideoList() {
         }
       );
 
-      list.appendChild(item);
+
+      list.appendChild(
+        item
+      );
 
     }
   );
+
 
   updateActiveItem();
 
@@ -880,11 +1243,8 @@ async function loadVideos() {
       "videoList"
     );
 
-  try {
 
-    /*
-      チャンネル情報
-    */
+  try {
 
     const channelURL =
       API_BASE +
@@ -899,10 +1259,16 @@ async function loadVideos() {
         API_KEY
       );
 
-    const channelResponse =
-      await fetch(channelURL);
 
-    if (!channelResponse.ok) {
+    const channelResponse =
+      await fetch(
+        channelURL
+      );
+
+
+    if (
+      !channelResponse.ok
+    ) {
 
       throw new Error(
         "チャンネル情報の取得に失敗しました"
@@ -910,8 +1276,10 @@ async function loadVideos() {
 
     }
 
+
     const channelData =
       await channelResponse.json();
+
 
     if (
       !channelData.items ||
@@ -924,6 +1292,7 @@ async function loadVideos() {
 
     }
 
+
     const uploadsPlaylist =
       channelData
         .items[0]
@@ -931,9 +1300,6 @@ async function loadVideos() {
         .relatedPlaylists
         .uploads;
 
-    /*
-      アップロード動画一覧
-    */
 
     const playlistURL =
       API_BASE +
@@ -949,10 +1315,16 @@ async function loadVideos() {
         API_KEY
       );
 
-    const playlistResponse =
-      await fetch(playlistURL);
 
-    if (!playlistResponse.ok) {
+    const playlistResponse =
+      await fetch(
+        playlistURL
+      );
+
+
+    if (
+      !playlistResponse.ok
+    ) {
 
       throw new Error(
         "動画一覧の取得に失敗しました"
@@ -960,13 +1332,19 @@ async function loadVideos() {
 
     }
 
+
     const playlistData =
       await playlistResponse.json();
 
-    videos =
-      playlistData.items || [];
 
-    if (!videos.length) {
+    videos =
+      playlistData.items ||
+      [];
+
+
+    if (
+      !videos.length
+    ) {
 
       throw new Error(
         "動画がありません"
@@ -974,34 +1352,25 @@ async function loadVideos() {
 
     }
 
-    /*
-      おすすめ欄を作る
-    */
 
     renderVideoList();
 
-    /*
-      1番上からスタート
-    */
 
-    currentIndex = 0;
+    currentIndex =
+      0;
+
 
     const firstVideo =
       videos[0];
+
 
     updateVideoInfo(
       firstVideo
     );
 
-    /*
-      YouTube IFrame APIを読み込む
-    */
 
     await loadYouTubeAPI();
 
-    /*
-      1番上を自動再生
-    */
 
     createPlayer(
       firstVideo
@@ -1012,16 +1381,25 @@ async function loadVideos() {
   }
   catch (error) {
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     list.innerHTML = `
+
       <div class="error">
+
         YouTube動画を取得できませんでした。
+
         <br><br>
+
         ${escapeHTML(
           error.message
         )}
+
       </div>
+
     `;
 
   }
@@ -1036,10 +1414,14 @@ async function loadVideos() {
 function escapeHTML(text) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   div.textContent =
     text || "";
+
 
   return div.innerHTML;
 
