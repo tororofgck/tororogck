@@ -160,7 +160,7 @@ body {
 }
 
 /* =========================================
-   プリンワールド
+   プリンワールド 漫画
 ========================================= */
 
 .manga {
@@ -223,23 +223,27 @@ body {
 }
 
 /* =========================================
-   漫画
-   タイトル → 画像 → タイトル → 画像
+   話タイトル
 ========================================= */
-
-.manga-pages {
-  width: 100%;
-  background: #fff;
-}
 
 .manga-episode-title {
   width: 100%;
   background: #111;
   color: #fff;
   padding: 14px 20px;
+
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5;
+}
+
+/* =========================================
+   漫画画像
+========================================= */
+
+.manga-pages {
+  width: 100%;
+  background: #fff;
 }
 
 .manga-page {
@@ -438,7 +442,7 @@ body {
 
 
       <!-- =====================================
-           プリンワールド
+           プリンワールド 漫画
       ====================================== -->
 
       <section class="manga">
@@ -566,33 +570,29 @@ let currentIndex = 0;
 ========================================= */
 
 /*
-  1周 = 4話
+  全20周
+
+  1周につき4話
 
   1周目
-  第1話 → 1.png
-  第2話 → 2.png
-  第3話 → 3.png
-  第4話 → pudding_episode04.png
+  第01話 → pudding_episode01.png
+  第02話 → pudding_episode02.png
+  第03話 → pudding_episode03.png
+  第04話 → pudding_episode04.png
 
   2周目
-  第5話 → 5.png
-  第6話 → 6.png
-  第7話 → 7.png
-  第8話 → 8.png
-
-  3周目
-  第9話  → 9.png
-  第10話 → 10.png
-  第11話 → 11.png
-  第12話 → 12.png
+  第05話 → pudding_episode05.png
+  第06話 → pudding_episode06.png
+  第07話 → pudding_episode07.png
+  第08話 → pudding_episode08.png
 
   ...
 
   20周目
-  第77話 → 77.png
-  第78話 → 78.png
-  第79話 → 79.png
-  第80話 → 80.png
+  第77話 → pudding_episode77.png
+  第78話 → pudding_episode78.png
+  第79話 → pudding_episode79.png
+  第80話 → pudding_episode80.png
 */
 
 const MANGA_IMAGES_PER_ROUND = 4;
@@ -623,13 +623,17 @@ const MANGA_EPISODES = {
    話数タイトル取得
 ========================================= */
 
-function getEpisodeTitle(episodeNumber) {
+function getEpisodeTitle(
+  episodeNumber
+) {
 
   if (
     MANGA_EPISODES[episodeNumber]
   ) {
 
-    return MANGA_EPISODES[episodeNumber];
+    return MANGA_EPISODES[
+      episodeNumber
+    ];
 
   }
 
@@ -645,7 +649,9 @@ function getEpisodeTitle(episodeNumber) {
    漫画 周目変更
 ========================================= */
 
-function changeMangaRound(round) {
+function changeMangaRound(
+  round
+) {
 
   round =
     parseInt(
@@ -719,11 +725,9 @@ function changeMangaRound(round) {
       startEpisode + i;
 
 
-    /*
-      ================================
-      タイトル
-      ================================
-    */
+    /* =====================================
+       タイトル
+    ====================================== */
 
     const title =
       document.createElement(
@@ -746,11 +750,9 @@ function changeMangaRound(round) {
     );
 
 
-    /*
-      ================================
-      画像
-      ================================
-    */
+    /* =====================================
+       画像
+    ====================================== */
 
     const img =
       document.createElement(
@@ -763,24 +765,24 @@ function changeMangaRound(round) {
 
 
     /*
-      第4話だけ専用画像
+      全話
+      pudding_episode01.png
+      pudding_episode02.png
+      ...
+      pudding_episode80.png
+
+      の形式
     */
 
-    if (
-      episodeNumber === 4
-    ) {
-
-      img.src =
-        "pudding_episode04.png";
-
-    }
-    else {
-
-      img.src =
-        episodeNumber +
-        ".png";
-
-    }
+    img.src =
+      "pudding_episode" +
+      String(
+        episodeNumber
+      ).padStart(
+        2,
+        "0"
+      ) +
+      ".png";
 
 
     img.alt =
@@ -874,7 +876,9 @@ function loadYouTubeAPI() {
    プレイヤー作成
 ========================================= */
 
-function createPlayer(videoId) {
+function createPlayer(
+  videoId
+) {
 
   player =
     new YT.Player(
@@ -975,7 +979,9 @@ function playNextVideo() {
 
 
   const nextVideo =
-    videos[currentIndex];
+    videos[
+      currentIndex
+    ];
 
 
   const nextVideoId =
@@ -1014,7 +1020,9 @@ function playNextVideo() {
    手動でおすすめをクリック
 ========================================= */
 
-function playVideo(index) {
+function playVideo(
+  index
+) {
 
   if (
     index < 0 ||
@@ -1031,7 +1039,9 @@ function playVideo(index) {
 
 
   const video =
-    videos[currentIndex];
+    videos[
+      currentIndex
+    ];
 
 
   const videoId =
@@ -1109,7 +1119,9 @@ function updateActiveItem() {
    動画情報
 ========================================= */
 
-function updateVideoInfo(video) {
+function updateVideoInfo(
+  video
+) {
 
   if (!video) {
 
@@ -1411,7 +1423,9 @@ async function loadVideos() {
    HTMLエスケープ
 ========================================= */
 
-function escapeHTML(text) {
+function escapeHTML(
+  text
+) {
 
   const div =
     document.createElement(
