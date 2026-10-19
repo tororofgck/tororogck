@@ -1,42 +1,288 @@
-[
-  {
-    "id": "1klwipJvhQ4",
-    "title": "#6 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  },
-  {
-    "id": "kyBK_vLMDIE",
-    "title": "#6 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  },
-  {
-    "id": "Qxb-JJrjACU",
-    "title": "#5 超自然スクワッド公認ゲーム実況ショート動画 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  },
-  {
-    "id": "kUs1AlohIr0",
-    "title": "#5 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  },
-  {
-    "id": "Ri9HWXjcFdE",
-    "title": "#4 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  },
-  {
-    "id": "9TdyORxFJKc",
-    "title": "#7 バイオハザードサバイバルユニット公認ゲーム実況 #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr"
-  },
-  {
-    "id": "0UC5tlGU8qs",
-    "title": "#174 AIの話【フラッシュパーティー公認クリエイター】「#PartyStar 」"
-  },
-  {
-    "id": "ku1Y9B7T-qE",
-    "title": "#3 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  },
-  {
-    "id": "1oXKySl8aPM",
-    "title": "曲目: Wait for me"
-  },
-  {
-    "id": "cQdgqHPaElQ",
-    "title": "#2 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr"
-  }
-]
+{
+  "normal": [
+    {
+      "videoId": "kyBK_vLMDIE",
+      "title": "#6 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/kyBK_vLMDIE/mqdefault.jpg",
+      "durationSeconds": 1436
+    },
+    {
+      "videoId": "kUs1AlohIr0",
+      "title": "#5 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/kUs1AlohIr0/mqdefault.jpg",
+      "durationSeconds": 658
+    },
+    {
+      "videoId": "Ri9HWXjcFdE",
+      "title": "#4 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/Ri9HWXjcFdE/mqdefault.jpg",
+      "durationSeconds": 954
+    },
+    {
+      "videoId": "9TdyORxFJKc",
+      "title": "#7 バイオハザードサバイバルユニット公認ゲーム実況 #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
+      "thumbnail": "https://i.ytimg.com/vi/9TdyORxFJKc/mqdefault.jpg",
+      "durationSeconds": 735
+    },
+    {
+      "videoId": "0UC5tlGU8qs",
+      "title": "#174 AIの話【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/0UC5tlGU8qs/mqdefault.jpg",
+      "durationSeconds": 328
+    },
+    {
+      "videoId": "ku1Y9B7T-qE",
+      "title": "#3 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/ku1Y9B7T-qE/mqdefault.jpg",
+      "durationSeconds": 455
+    },
+    {
+      "videoId": "cQdgqHPaElQ",
+      "title": "#2 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/cQdgqHPaElQ/mqdefault.jpg",
+      "durationSeconds": 518
+    },
+    {
+      "videoId": "IRawVjMvFkc",
+      "title": "#1 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/IRawVjMvFkc/mqdefault.jpg",
+      "durationSeconds": 453
+    },
+    {
+      "videoId": "Kb8iQT14GYc",
+      "title": "#6 バイオハザードサバイバルユニット公認ゲーム実況 #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
+      "thumbnail": "https://i.ytimg.com/vi/Kb8iQT14GYc/mqdefault.jpg",
+      "durationSeconds": 529
+    },
+    {
+      "videoId": "i_9L8gnz8xY",
+      "title": "#168 ウナギの話【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/i_9L8gnz8xY/mqdefault.jpg",
+      "durationSeconds": 237
+    },
+    {
+      "videoId": "QnvCnAg6Sus",
+      "title": "#5 バイオハザードサバイバルユニット公認実況 #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
+      "thumbnail": "https://i.ytimg.com/vi/QnvCnAg6Sus/mqdefault.jpg",
+      "durationSeconds": 568
+    },
+    {
+      "videoId": "q_Z_9medpdc",
+      "title": "#3 第五人格 youdaoadsクリエイター実況 #第五人格 #IdentityV #はじめての荘園ガイド #NetEase #youdaoads #pr",
+      "thumbnail": "https://i.ytimg.com/vi/q_Z_9medpdc/mqdefault.jpg",
+      "durationSeconds": 784
+    },
+    {
+      "videoId": "pMD7dcNGReU",
+      "title": "#166 ブランドのGUCCIについて【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/pMD7dcNGReU/mqdefault.jpg",
+      "durationSeconds": 361
+    },
+    {
+      "videoId": "yC7mDEFsR5A",
+      "title": "#2 第五人格 youdaoadsクリエイター実況 #第五人格 #IdentityV #はじめての荘園ガイド #NetEase #youdaoads #pr",
+      "thumbnail": "https://i.ytimg.com/vi/yC7mDEFsR5A/mqdefault.jpg",
+      "durationSeconds": 748
+    },
+    {
+      "videoId": "GGwm9Chu8do",
+      "title": "#4 バイオハザードサバイバルユニット公認実況 #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
+      "thumbnail": "https://i.ytimg.com/vi/GGwm9Chu8do/mqdefault.jpg",
+      "durationSeconds": 713
+    },
+    {
+      "videoId": "9szfwO-pESg",
+      "title": "#165 ワールドカップ2026【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/9szfwO-pESg/mqdefault.jpg",
+      "durationSeconds": 360
+    },
+    {
+      "videoId": "cFiAA64u2xM",
+      "title": "#164 ゴディバ食べたい！【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/cFiAA64u2xM/mqdefault.jpg",
+      "durationSeconds": 437
+    },
+    {
+      "videoId": "Pvi-GZNH9fw",
+      "title": "#163 ゴミ袋無い方の対策方法【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/Pvi-GZNH9fw/mqdefault.jpg",
+      "durationSeconds": 252
+    },
+    {
+      "videoId": "uRYA30mqiVI",
+      "title": "#3 バイオハザードサバイバルユニット公認実況#BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
+      "thumbnail": "https://i.ytimg.com/vi/uRYA30mqiVI/mqdefault.jpg",
+      "durationSeconds": 360
+    },
+    {
+      "videoId": "hR6SqhQ71Bw",
+      "title": "#161 名探偵プリキュアの話【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/hR6SqhQ71Bw/mqdefault.jpg",
+      "durationSeconds": 196
+    }
+  ],
+  "shorts": [
+    {
+      "videoId": "1klwipJvhQ4",
+      "title": "#6 超自然スクワッド公認ゲーム実況 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/1klwipJvhQ4/mqdefault.jpg",
+      "durationSeconds": 165
+    },
+    {
+      "videoId": "Qxb-JJrjACU",
+      "title": "#5 超自然スクワッド公認ゲーム実況ショート動画 #TombBusters #超自然スクワッド #超スク #超スク実況 #GiantGame #pr",
+      "thumbnail": "https://i.ytimg.com/vi/Qxb-JJrjACU/mqdefault.jpg",
+      "durationSeconds": 139
+    },
+    {
+      "videoId": "1oXKySl8aPM",
+      "title": "曲目: Wait for me",
+      "thumbnail": "https://i.ytimg.com/vi/1oXKySl8aPM/mqdefault.jpg",
+      "durationSeconds": 170
+    },
+    {
+      "videoId": "DntOL-8YvpY",
+      "title": "#1 #ポケモンチャンピオンズゲーム実況 理論上100連勝 #PokemonChampions #神宮寺匁トロロ",
+      "thumbnail": "https://i.ytimg.com/vi/DntOL-8YvpY/mqdefault.jpg",
+      "durationSeconds": 100
+    },
+    {
+      "videoId": "TsGcU6T3vQc",
+      "title": "#2 #クラッシュオブクランゲーム実況 #ClashofClans 2本目 #クラッシュオブクラン #クラクラ #モバイルゲーム #Supercell #PR",
+      "thumbnail": "https://i.ytimg.com/vi/TsGcU6T3vQc/mqdefault.jpg",
+      "durationSeconds": 60
+    },
+    {
+      "videoId": "JzTE5ATEBts",
+      "title": "#173 マクドナルドの話【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/JzTE5ATEBts/mqdefault.jpg",
+      "durationSeconds": 104
+    },
+    {
+      "videoId": "m1lS9lugpmI",
+      "title": "#172 ブランドNIKEについて【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/m1lS9lugpmI/mqdefault.jpg",
+      "durationSeconds": 147
+    },
+    {
+      "videoId": "BL_hX4h2Iak",
+      "title": "#171 まどマギ映画化【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/BL_hX4h2Iak/mqdefault.jpg",
+      "durationSeconds": 112
+    },
+    {
+      "videoId": "sDyTvQPoHtk",
+      "title": "#170 ファミリーマートがTシャツOKとは？【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/sDyTvQPoHtk/mqdefault.jpg",
+      "durationSeconds": 126
+    },
+    {
+      "videoId": "2PlGwRqydgk",
+      "title": "#169 スイカドリンクについて【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/2PlGwRqydgk/mqdefault.jpg",
+      "durationSeconds": 99
+    },
+    {
+      "videoId": "RCINl8kCqyU",
+      "title": "#167 新キャラ追加！【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/RCINl8kCqyU/mqdefault.jpg",
+      "durationSeconds": 163
+    },
+    {
+      "videoId": "T327PMIFQ-I",
+      "title": "#162 移民の更新料が高くなるみたい！【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/T327PMIFQ-I/mqdefault.jpg",
+      "durationSeconds": 133
+    },
+    {
+      "videoId": "nZ6bedut1Hw",
+      "title": "#2 バイオハザードサバイバルユニット公認実況#BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー",
+      "thumbnail": "https://i.ytimg.com/vi/nZ6bedut1Hw/mqdefault.jpg",
+      "durationSeconds": 144
+    },
+    {
+      "videoId": "doMOmrqJ1YY",
+      "title": "【ブロスタ公認】今回、「妖精の花」のピンバッジをプレゼント！Supercellクリエイター限定で無料配布となります。#BrawlStars #PR",
+      "thumbnail": "https://i.ytimg.com/vi/doMOmrqJ1YY/mqdefault.jpg",
+      "durationSeconds": 85
+    },
+    {
+      "videoId": "KyQpGhL_RXw",
+      "title": "#3 今シーズン最強デッキ紹介【ポケポケ】「#PokémonTradingCardGamePocket 」",
+      "thumbnail": "https://i.ytimg.com/vi/KyQpGhL_RXw/mqdefault.jpg",
+      "durationSeconds": 178
+    },
+    {
+      "videoId": "G-_bIplFmR0",
+      "title": "【ブロスタ】ウルトラレアの新キャラクター「Najia」が当たるチャンス！Supercellクリエイター限定BOXを無料でプレゼント！#PR",
+      "thumbnail": "https://i.ytimg.com/vi/G-_bIplFmR0/mqdefault.jpg",
+      "durationSeconds": 98
+    },
+    {
+      "videoId": "tfRafnTbFss",
+      "title": "レーシングマスター始めました「#レーマスター乗ってこ 」「#レーシングマスター 」「#レーマス 」「#Netease 」2本目",
+      "thumbnail": "https://i.ytimg.com/vi/tfRafnTbFss/mqdefault.jpg",
+      "durationSeconds": 155
+    },
+    {
+      "videoId": "O_JnskLQLwM",
+      "title": "UUUMから明けましておめでとうございますを頂きました。僕は喪中なのですが、皆様、去年も本当に大変お世話になりました。本年もよろしくお願いします。",
+      "thumbnail": "https://i.ytimg.com/vi/O_JnskLQLwM/mqdefault.jpg",
+      "durationSeconds": 14
+    },
+    {
+      "videoId": "FGPkglvGV1k",
+      "title": "日本のベンチに充電器搭載 後編【フラッシュパーティー公認クリエイター】「#PartyStar 」139本目",
+      "thumbnail": "https://i.ytimg.com/vi/FGPkglvGV1k/mqdefault.jpg",
+      "durationSeconds": 180
+    },
+    {
+      "videoId": "YPNa2r4RhNY",
+      "title": "ポケポケの最強デッキ新シーズン待ち@神宮寺匁トロロ【プロアーティスト】 #ポケポケ #ポケポケ最強デッキ",
+      "thumbnail": "https://i.ytimg.com/vi/YPNa2r4RhNY/mqdefault.jpg",
+      "durationSeconds": 156
+    },
+    {
+      "videoId": "LfI4uwOnOLg",
+      "title": "ウナギの話【フラッシュパーティー公認クリエイター】「#PartyStar 」133本目",
+      "thumbnail": "https://i.ytimg.com/vi/LfI4uwOnOLg/mqdefault.jpg",
+      "durationSeconds": 128
+    },
+    {
+      "videoId": "FVJkxbaXKdg",
+      "title": "アメリカで1セント廃止【フラッシュパーティー公認クリエイター】「#PartyStar 」132本目",
+      "thumbnail": "https://i.ytimg.com/vi/FVJkxbaXKdg/mqdefault.jpg",
+      "durationSeconds": 152
+    },
+    {
+      "videoId": "1n6kpAzZ3eM",
+      "title": "世界中で日本のアニメが大ヒット！【フラッシュパーティー公認クリエイター】「#PartyStar 」131本目",
+      "thumbnail": "https://i.ytimg.com/vi/1n6kpAzZ3eM/mqdefault.jpg",
+      "durationSeconds": 152
+    },
+    {
+      "videoId": "DvqGZX058Zk",
+      "title": "マイナンバーカードと免許証連動だと？！【フラッシュパーティー公認クリエイター】「#PartyStar 」122本目",
+      "thumbnail": "https://i.ytimg.com/vi/DvqGZX058Zk/mqdefault.jpg",
+      "durationSeconds": 85
+    },
+    {
+      "videoId": "F6dhUdlsOpU",
+      "title": "ゴジラのガチャイベント！「#Doomsdaylastsurvivors」「#IGG」7本目「#ドゥームズデイ」「#クリキャ40」",
+      "thumbnail": "https://i.ytimg.com/vi/F6dhUdlsOpU/mqdefault.jpg",
+      "durationSeconds": 70
+    },
+    {
+      "videoId": "lmhWQjmGezA",
+      "title": "ダウンタウンのチャンネルが出来るね！【フラッシュパーティー公認クリエイター】「#PartyStar 」120本目",
+      "thumbnail": "https://i.ytimg.com/vi/lmhWQjmGezA/mqdefault.jpg",
+      "durationSeconds": 148
+    },
+    {
+      "videoId": "jIXudCDGSag",
+      "title": "今年の夏が暑過ぎるだろ！！【フラッシュパーティー公認クリエイター】「#PartyStar 」119本目",
+      "thumbnail": "https://i.ytimg.com/vi/jIXudCDGSag/mqdefault.jpg",
+      "durationSeconds": 161
+    }
+  ]
+}
