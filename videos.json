@@ -1,6 +1,12 @@
 {
   "normal": [
     {
+      "videoId": "Tg-KZO95M6w",
+      "title": "#175 最近のニュース【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/Tg-KZO95M6w/mqdefault.jpg",
+      "durationSeconds": 319
+    },
+    {
       "videoId": "MD6pPP80Ay0",
       "title": "#8 バイオハザードサバイバルユニット公認ゲーム実況 #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
       "thumbnail": "https://i.ytimg.com/vi/MD6pPP80Ay0/mqdefault.jpg",
@@ -113,15 +119,15 @@
       "title": "#164 ゴディバ食べたい！【フラッシュパーティー公認クリエイター】「#PartyStar 」",
       "thumbnail": "https://i.ytimg.com/vi/cFiAA64u2xM/mqdefault.jpg",
       "durationSeconds": 437
-    },
-    {
-      "videoId": "Pvi-GZNH9fw",
-      "title": "#163 ゴミ袋無い方の対策方法【フラッシュパーティー公認クリエイター】「#PartyStar 」",
-      "thumbnail": "https://i.ytimg.com/vi/Pvi-GZNH9fw/mqdefault.jpg",
-      "durationSeconds": 252
     }
   ],
   "shorts": [
+    {
+      "videoId": "yi0-DnJiTEw",
+      "title": "#175 最近のニュース【フラッシュパーティー公認クリエイター】「#PartyStar 」",
+      "thumbnail": "https://i.ytimg.com/vi/yi0-DnJiTEw/mqdefault.jpg",
+      "durationSeconds": 177
+    },
     {
       "videoId": "e7FdoOmemfs",
       "title": "#8 バイオハザードサバイバルユニット公認実況 #切り抜き #BIOHAZARDSurvivalUnit #バイオサバユニ #バイオハザードサバイバルユニット #モバイルゲーム #JOYクルー #pr",
@@ -289,12 +295,6 @@
       "title": "ダウンタウンのチャンネルが出来るね！【フラッシュパーティー公認クリエイター】「#PartyStar 」120本目",
       "thumbnail": "https://i.ytimg.com/vi/lmhWQjmGezA/mqdefault.jpg",
       "durationSeconds": 148
-    },
-    {
-      "videoId": "jIXudCDGSag",
-      "title": "今年の夏が暑過ぎるだろ！！【フラッシュパーティー公認クリエイター】「#PartyStar 」119本目",
-      "thumbnail": "https://i.ytimg.com/vi/jIXudCDGSag/mqdefault.jpg",
-      "durationSeconds": 161
     }
   ]
 }
