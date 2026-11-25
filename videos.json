@@ -1,6 +1,12 @@
 {
   "normal": [
     {
+      "videoId": "FL-9rI7vVps",
+      "title": "【PixAI】4コマ漫画が動いた！？【Tsubaki.3】#PR #PixAI #PixAITsubakiV3 #AIイラスト",
+      "thumbnail": "https://i.ytimg.com/vi/FL-9rI7vVps/mqdefault.jpg",
+      "durationSeconds": 258
+    },
+    {
       "videoId": "AIzbvOQ3cEk",
       "title": "【#10】スネークスポットコラボ「超自然スクワッド」大好き人間たち【TombBusters】#ゲーム実況 #超スク #超スク実況 #GiantGame #pr",
       "thumbnail": "https://i.ytimg.com/vi/AIzbvOQ3cEk/mqdefault.jpg",
@@ -113,15 +119,15 @@
       "title": "#3 第五人格 youdaoadsクリエイター実況 #第五人格 #IdentityV #はじめての荘園ガイド #NetEase #youdaoads #pr",
       "thumbnail": "https://i.ytimg.com/vi/q_Z_9medpdc/mqdefault.jpg",
       "durationSeconds": 784
-    },
-    {
-      "videoId": "pMD7dcNGReU",
-      "title": "#166 ブランドのGUCCIについて【フラッシュパーティー公認クリエイター】「#PartyStar 」",
-      "thumbnail": "https://i.ytimg.com/vi/pMD7dcNGReU/mqdefault.jpg",
-      "durationSeconds": 361
     }
   ],
   "shorts": [
+    {
+      "videoId": "V76caNWBUiM",
+      "title": "【PixAI】4コマ漫画が動いた！？【Tsubaki.3】#切り抜き #PR #PixAI #PixAITsubakiV3 #AIイラスト",
+      "thumbnail": "https://i.ytimg.com/vi/V76caNWBUiM/mqdefault.jpg",
+      "durationSeconds": 158
+    },
     {
       "videoId": "ct05IAFGy9w",
       "title": "【#10】スネークスポットコラボ「超自然スクワッド」大好き人間たち【TombBusters】#切り抜き #ゲーム実況 #超スク #超スク実況 #GiantGame #pr",
@@ -294,12 +300,6 @@
       "videoId": "FVJkxbaXKdg",
       "title": "アメリカで1セント廃止【フラッシュパーティー公認クリエイター】「#PartyStar 」132本目",
       "thumbnail": "https://i.ytimg.com/vi/FVJkxbaXKdg/mqdefault.jpg",
-      "durationSeconds": 152
-    },
-    {
-      "videoId": "1n6kpAzZ3eM",
-      "title": "世界中で日本のアニメが大ヒット！【フラッシュパーティー公認クリエイター】「#PartyStar 」131本目",
-      "thumbnail": "https://i.ytimg.com/vi/1n6kpAzZ3eM/mqdefault.jpg",
       "durationSeconds": 152
     }
   ]
